@@ -10,6 +10,8 @@ import DatePicker from 'react-native-datepicker';
 import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
 
 import AddNewTrxDetail from './addNewTrxDetail';
+import { categories } from '../../const';
+import { log } from '../../Helper'
 
 export default class AddNewTrx extends Component{
 
@@ -53,19 +55,35 @@ export default class AddNewTrx extends Component{
 
     componentWillMount() {
         AsyncStorage.getItem('transaction').then((transaction) => {
-            Reactotron.log("DID MOUNT TRANSACTION")
-            Reactotron.log(JSON.parse(transaction))
+            log("Did mount trans", JSON.parse(transaction))
             this.setState({
                 trxArray: JSON.parse(transaction)
             })
         })
+
+        this.setState({
+            trxCat: categories
+        })
     }
 
+    renderPicker() {
+        let catActive = this.props.trxType.toString() === "Transaksi Pengeluaran" ? this.state.trxCat.pengeluaran : this.state.trxCat.pemasukan
+        let items = catActive.map((cat) => {
+            return <Picker.Item label={cat.label} value={cat.value} />
+        })
+
+        return (
+            <Picker
+                supportedOrientations={['portrait','landscape']}
+                mode="dropdown"
+                selectedValue={this.state.trxCat}
+                onValueChange={this._onValueChange}>
+                {items}
+            </Picker>
+        )
+    }
 
     render(){
-        // Reactotron.log("CEK DATE");
-        // Reactotron.log(this.state.trxDate);
-
         let icon = this.icons['down'];
         if(this.state.expanded) {
             icon = this.icons['up'];
@@ -100,18 +118,19 @@ export default class AddNewTrx extends Component{
                     </Item>
                     {/*next: https://github.com/d-a-n/react-native-modal-picker*/}
                     <Form style={{paddingLeft: 10, paddingRight: 15}}>
-                        <Picker
-                            supportedOrientations={['portrait','landscape']}
-                            mode="dropdown"
-                            selectedValue={this.state.trxCat}
-                            onValueChange={this._onValueChange}>
-                            <Picker.Item label="Kategori" value="" disabled/>
-                            <Picker.Item label="Penjualan" value="Penjualan" />
-                            <Picker.Item label="Pinjaman" value="Pinjaman" />
-                            <Picker.Item label="Pembelian Persediaan" value="Pembelian Persediaan" />
-                            <Picker.Item label="Ongkos Kirim" value="Ongkos Kirim" />
-                            <Picker.Item label="Pembayaran Hutang" value="Pembayaran Hutang" />
-                        </Picker>
+                        {this.renderPicker()}
+                        {/*<Picker*/}
+                            {/*supportedOrientations={['portrait','landscape']}*/}
+                            {/*mode="dropdown"*/}
+                            {/*selectedValue={this.state.trxCat}*/}
+                            {/*onValueChange={this._onValueChange}>*/}
+                            {/*<Picker.Item label="Kategori" value="" disabled/>*/}
+                            {/*<Picker.Item label="Penjualan" value="Penjualan" />*/}
+                            {/*<Picker.Item label="Pinjaman" value="Pinjaman" />*/}
+                            {/*<Picker.Item label="Pembelian Persediaan" value="Pembelian Persediaan" />*/}
+                            {/*<Picker.Item label="Ongkos Kirim" value="Ongkos Kirim" />*/}
+                            {/*<Picker.Item label="Pembayaran Hutang" value="Pembayaran Hutang" />*/}
+                        {/*</Picker>*/}
                         <Hr lineColor="#d6d1d1" />
                     </Form>
                     <Item>

@@ -6,48 +6,16 @@ import {Actions} from 'react-native-router-flux';
 import ImageSlider from 'react-native-image-slider';
 import Swiper from 'react-native-swiper';
 
-const cards = [
-    {
-        desc: '',
-        image: require('../../assets/src/img/regLogin/ws1.jpg'),
-    },
-    {
-        desc: '',
-        image: require('../../assets/src/img/regLogin/ws2.jpg'),
-    },
-    {
-        desc: '',
-        image: require('../../assets/src/img/regLogin/ws3.jpg'),
-    },
-];
 
 export default class WelcomeScreen extends Component {
-    // constructor(props){
-    //     super(props);
-    //
-    //     this.state = {
-    //         position: 1,
-    //         interval: null
-    //     };
-    //
-    // }
-    //
-    // componentWillMount(){
-    //     this.setState({interval: setInterval(() => {
-    //         this.setState({position: this.state.position === 2 ? 0 : this.state.position + 1});
-    //             }, 2000)});
-    // }
-    //
-    // componentWillUnmount(){
-    //     clearInterval(this.state.interval);
-    // }
+
 
     render() {
         return (
             <View style={{flex: 1, flexDirection:'column'}}>
 
                 <View style={{flex: 5}}>
-                    <Swiper >
+                    <Swiper autoplay autoplayTimeout={3}>
                         <View style={styles.slideText}>
                             <Image style={styles.imageBg} source={require('../../assets/src/img/regLogin/Opening TB_1.png')} />
                             <Text style={styles.text}>Membantumu dalam mencatat keuangan bisnis secara realtime dan mudah</Text>
@@ -63,12 +31,12 @@ export default class WelcomeScreen extends Component {
                     </Swiper>
                 </View>
 
-                    <View style={{flex: 3}}>
-                        <Content style={{padding:10, marginTop:75}}>
-                            <Button block style={{padding:5, paddingTop: 10, backgroundColor:'#00AE9C', paddingBottom: 5}} onPress={()=>Actions.regA()}>
-                                <Text>DAFTAR AKUN BARU</Text>
+                    <View style={{flex: 2}}>
+                        <Content style={{padding:10, marginTop:55}}>
+                            <Button block style={{padding:5, backgroundColor:'#00AE9C'}} onPress={()=>Actions.regA()}>
+                                <Text style={{color:'#fff'}}>DAFTAR AKUN BARU</Text>
                             </Button>
-                            <Text style={{color:'#00AE9C', fontSize:12, textAlign: 'center', paddingTop: 15  }} onPress={()=>Actions.login()}>Sudah Punya Akun ?</Text>
+                            <Text style={{color:'#00AE9C', fontSize:12, textAlign: 'center', paddingTop: 5  }} onPress={()=>Actions.login()}>Sudah Punya Akun ?</Text>
                         </Content>
                     </View>
             </View>

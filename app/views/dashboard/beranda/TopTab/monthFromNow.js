@@ -38,8 +38,8 @@ class HomeTabmFN extends Component{
 
         return(
             <Container style={{flex:1}}>
-                <Content style={{flex:1, paddingBottom:15}}>
-                    <Card>
+                <Content style={{flex:1, paddingBottom:0, marginBottom:0}}>
+                    <Card style={{padding:0, margin:0}}>
                         <CardItem last style={{flex: 1, flexDirection: 'row'}}>
                             <Text style={{flex: 3}}>Arus Kas</Text>
                             <Right style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}><Text>Rp 0</Text><Icon name="arrow-forward" /></Right>
@@ -55,19 +55,20 @@ class HomeTabmFN extends Component{
                         </CardItem>
                     </Card>
                 </Content>
-                {/*//Reactotron.log*/}
-                <List dataArray={this.state.transaction} style={{flex:2}}
+                <Content style={{flex:2, paddingTop:0, marginTop:0}}>
+                    <List dataArray={this.state.transaction} style={{marginRight:20, paddingLeft:0}}
                       renderRow={(trx) =>
                           <ListItem style={{flex: 1, flexDirection: 'row'}}>
-                              <Thumbnail style={{flex: 1, width: 24, height: 24}} square size={10} source={trx.trxIconImg} />
+                              <Thumbnail style={{flex: 2, width: 24, height: 24, padding:0}} square size={24} source={trx.trxIconImg} />
                               <Body style={{flex: 7}}>
                               <Text>{trx.trxCat}</Text>
                               <Text note>{trx.trxDesc}</Text>
                               </Body>
-                              <Text style={{flex: 4}}>Rp {trx.trxTotalPrice}</Text>
+                              <Text style={{flex: 5, padding:0}}>Rp {trx.trxTotalPrice}</Text>
                           </ListItem>
                       }>
                 </List>
+                </Content>
             </Container>
         );
     }
