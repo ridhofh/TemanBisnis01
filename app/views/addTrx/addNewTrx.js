@@ -26,6 +26,7 @@ export default class AddNewTrx extends Component{
             trxPrice: "",
             trxTotalPrice: "",
             trxCat: "",
+            trxCats: categories,
             trxDesc: "",
             trxIconImg: require('../../assets/src/img/icon_trx/Ikon_CashIn.png'),
             trxDate: this.cek_date(),
@@ -61,13 +62,10 @@ export default class AddNewTrx extends Component{
             })
         })
 
-        this.setState({
-            trxCat: categories
-        })
     }
 
     renderPicker() {
-        let catActive = this.props.trxType.toString() === "Transaksi Pengeluaran" ? this.state.trxCat.pengeluaran : this.state.trxCat.pemasukan
+        let catActive = this.props.trxType.toString() === "Transaksi Pengeluaran" ? this.state.trxCats.pengeluaran : this.state.trxCats.pemasukan
         let items = catActive.map((cat) => {
             return <Picker.Item label={cat.label} value={cat.value} />
         })
@@ -119,18 +117,6 @@ export default class AddNewTrx extends Component{
                     {/*next: https://github.com/d-a-n/react-native-modal-picker*/}
                     <Form style={{paddingLeft: 10, paddingRight: 15}}>
                         {this.renderPicker()}
-                        {/*<Picker*/}
-                            {/*supportedOrientations={['portrait','landscape']}*/}
-                            {/*mode="dropdown"*/}
-                            {/*selectedValue={this.state.trxCat}*/}
-                            {/*onValueChange={this._onValueChange}>*/}
-                            {/*<Picker.Item label="Kategori" value="" disabled/>*/}
-                            {/*<Picker.Item label="Penjualan" value="Penjualan" />*/}
-                            {/*<Picker.Item label="Pinjaman" value="Pinjaman" />*/}
-                            {/*<Picker.Item label="Pembelian Persediaan" value="Pembelian Persediaan" />*/}
-                            {/*<Picker.Item label="Ongkos Kirim" value="Ongkos Kirim" />*/}
-                            {/*<Picker.Item label="Pembayaran Hutang" value="Pembayaran Hutang" />*/}
-                        {/*</Picker>*/}
                         <Hr lineColor="#d6d1d1" />
                     </Form>
                     <Item>

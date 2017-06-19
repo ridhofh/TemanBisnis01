@@ -1,85 +1,69 @@
-import React, { Component } from 'react';
+'use strict';
+import React from 'react';
 import {
-    Image, View, Text, Dimensions
+    Image, View, Text, Alert
 } from 'react-native';
-import {Content, Container, Button, Item, Label, Input} from 'native-base';
+import {Content, Container, Button, Form, Item, Label, Input} from 'native-base';
 import RegHeader from './regHeader';
 import {Actions} from 'react-native-router-flux';
+import ValidationComponent from 'react-native-form-validator';
 
-import { Form, FormItem } from 'react-native-form-validation';
-
-const width = Dimensions.get('window').width;
-
-export default class Login extends Component {
+export default class Login extends ValidationComponent {
     constructor(props) {
         super(props)
-
         this.state = {
-            textInput1: '1',
-            view1:''
+            userEmail: '',
+            userPassword:''
         };
     }
 
-    textInput1Change(event){
-        this.setState({
-            textInput1:event.nativeEvent.text
-        });
-    }
-
-    submit(){
-        let submitResults = this.refs.form.validate();
-        validatedFields = [
-            {
-                isValid: true,
-            },
-            {
-                isValid: false,
-           }
-        ];
-        Actions.index();
-    }
-
-    // customValidation(){
-    //     return true;
+    // _onPressButton() {
+    //     // Call ValidationComponent validate method
+    //     this.validate({
+    //         userEmail: {email: true, minlength:6, required: true},
+    //         userPassword: {minlength:6, required: true}
+    //     }).then(Actions.index());
     // }
+
+    validateEmail(userEmail){
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(userEmail);
+    }
+
+    validatePassword(userPassword){
+        var re = /^.{6,30}/;
+        return re.test(userPassword);
+    }
 
     render() {
         return (
             <Container>
                 <RegHeader headerTitle="Masuk" />
                 <Content>
-                    
-
-                            <Item floatingLabel>
-                                <Form style={{paddingRight: 15}}
-                                      ref="form"
-                                      shouldValidate={true}>
-                                    <FormItem isRequired={true}
-                                              regExp={/^\d+$/   }>
-                                        <Label>Email</Label>
-                                        <Input value={this.state.textInput1}
-                                               onChange={this.textInput1Change.bind(this)} />
-                                    </FormItem>
-                                </Form>
-                            </Item>
-
-
-                            <Item floatingLabel>
+                    <Form style={{paddingRight: 15}}>
+                        <Item floatingLabel>
+                            <Label>Email</Label>
+                            <Input ref="email"
+                                   onChangeText={(userEmail) => this.setState({userEmail})} value={this.state.userEmail} />
+                        </Item>
+                        <Item floatingLabel>
                                 <Label>Kata Sandi</Label>
-                                <Input secureTextEntry />
-                            </Item>
-
-                        {/*<FormItem*/}
-                            {/*isRequired={true}*/}
-                            {/*fieldToBeValidated={'test'}>*/}
-                            {/*<View*/}
-                                {/*test={this.state.view1}>*/}
-                                {/*<Text> {this.state.view1}</Text>*/}
-                            {/*</View>*/}
-                        {/*</FormItem>*/}
-
+                                <Input  secureTextEntry
+                                        onChangeText={(userPassword) => this.setState({userPassword})} value={this.state.userPassword}/>
+                        </Item>
+                    </Form>
+                    <Text>
+                        {this.getErrorMessages()}
+                    </Text>
                     <Content style={{padding:10, marginTop:20}}>
-                        <Button block style={{padding:5, paddingTop: 10, backgroundColor:'#00AE9C', paddingBottom: 5}} onPress={this.submit.bind(this)} >
+                        <Button block style={{padding:5, paddingTop: 10, backgroundColor:'#00AE9C', paddingBottom: 5}}
+                                onPress={()=>{if (this.validateEmail(this.state.userEmail) &&  this.validatePassword(this.state.userPassword))  {
+                                    Alert.alert('Sukses');
+                                    Actions.index();
+                                } else {
+                                    Alert.alert('Gagal')
+                                }}}
+                                 >
                             <Text style={{color:'#fff'}}>MASUK</Text>
                         </Button>
                         <Text style={{color:'#00AE9C', fontSize:14, textAlign: 'center', paddingTop: 20 }}>Atau masuk melalui</Text>
@@ -101,4 +85,3 @@ export default class Login extends Component {
 }
 
 module.exports = Login;
-
