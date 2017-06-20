@@ -1,25 +1,25 @@
 export const categories = {
     pemasukan: [
-            {label: "Pendapatan Jasa", value: "a1"},
-            {label: "Penjualan", value: "a2"},
-            {label: "Komisi/Fee", value: "a3"},
-            {label: "Penerimaan Piutang", value: "a4"},
-            {label: "Modal", value: "a5"},
-            {label: "Pinjaman", value: "a6"}
+            {label: "Pendapatan Jasa", value: "Pendapatan Jasa"},
+            {label: "Penjualan", value: "Penjualan"},
+            {label: "Komisi/Fee", value: "Komisi/Fee"},
+            {label: "Penerimaan Piutang", value: "Penerimaan Piutang"},
+            {label: "Modal", value: "Modal"},
+            {label: "Pinjaman", value: "Pinjaman"}
         ],
     pengeluaran: [
-        {label: "Pembelian Persediaan", value: "b1"},
-        {label: "Pembelian Bahan Baku", value: "b2"},
-        {label: "Ongkos Pembelian", value: "b3"},
-        {label: "Beban Kemasan/Tambah", value: "b4"},
-        {label: "Beban Promosi", value: "b5"},
-        {label: "Beban Gaji Pegawai", value: "b6"},
-        {label: "Beban Gedung", value: "b7"},
-        {label: "Perlengkapan", value: "b8"},
-        {label: "Peralatan", value: "b9"},
-        {label: "Ongkos Kirim", value: "b10"},
-        {label: "Pembayaran Utang", value: "b11"},
-        {label: "Pengeluaran Pribadi", value: "b12"}
+        {label: "Pembelian Persediaan", value: "Pembelian Persediaan"},
+        {label: "Pembelian Bahan Baku", value: "Pembelian Bahan Baku"},
+        {label: "Ongkos Pembelian", value: "Ongkos Pembelian"},
+        {label: "Beban Kemasan/Tambah", value: "Beban Kemasan"},
+        {label: "Beban Promosi", value: "Beban Promosi"},
+        {label: "Beban Gaji Pegawai", value: "Beban Gaji Pegawai"},
+        {label: "Beban Gedung", value: "Beban Gedung"},
+        {label: "Perlengkapan", value: "Perlengkapan"},
+        {label: "Peralatan", value: "Peralatan"},
+        {label: "Ongkos Kirim", value: "Ongkos Kirim"},
+        {label: "Pembayaran Utang", value: "Pembayaran Hutang"},
+        {label: "Pengeluaran Pribadi", value: "Pengeluaran Pribadi"}
     ]
 };
 

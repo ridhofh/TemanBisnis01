@@ -61,12 +61,12 @@ export default class Login extends ValidationComponent {
                                     Alert.alert('Sukses');
                                     Actions.index();
                                 } else {
-                                    Alert.alert('Gagal')
+                                    Alert.alert('Gagal. Cek Kembali email/password Anda')
                                 }}}
                                  >
                             <Text style={{color:'#fff'}}>MASUK</Text>
                         </Button>
-                        <Text style={{color:'#00AE9C', fontSize:14, textAlign: 'center', paddingTop: 20 }}>Atau masuk melalui</Text>
+                        <Text style={{color:'#00AE9C', fontSize:14, textAlign: 'center', paddingTop: 20 }}>atau masuk melalui</Text>
                         <View style={{
                             flex: 1,
                             flexDirection: 'row',

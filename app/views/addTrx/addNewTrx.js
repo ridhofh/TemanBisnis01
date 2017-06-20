@@ -23,7 +23,7 @@ export default class AddNewTrx extends Component{
             trxUserId: "",
             trxType: this.props.trxType,
             trxQty: 1,
-            trxPrice: "",
+            trxPrice: this.trxTotalPrice,
             trxTotalPrice: "",
             trxCat: "",
             trxCats: categories,
@@ -62,6 +62,11 @@ export default class AddNewTrx extends Component{
             })
         })
 
+    }
+
+    validateInput(inputFill) {
+        var re = /^(?=\s*\S).*$/;
+        return re.test(inputFill);
     }
 
     renderPicker() {
@@ -111,7 +116,7 @@ export default class AddNewTrx extends Component{
 
                         <Label style={{paddingRight: 5}} >@Rp.</Label>
                         <Input onChangeText={(trxPrice) => this.setState({trxPrice})}
-                               placeholder="0 ,-"
+                               placeholder={this.state.trxTotalPrice}
                                value={this.state.trxPrice}/>
                     </Item>
                     {/*next: https://github.com/d-a-n/react-native-modal-picker*/}
@@ -182,7 +187,7 @@ export default class AddNewTrx extends Component{
 
     addTrx(){
         //Alert.alert("Add transaction")
-        if(this.state.trxCat){
+        if (this.validateInput(this.state.trxPrice) &&  this.validateInput(this.state.trxTotalPrice)){
 
             let trxId = uuid.v1();
 
@@ -195,13 +200,18 @@ export default class AddNewTrx extends Component{
                 'trxIconImg' : this.state.trxIconImg,
                 'trxId': trxId });
             this.setState({trxArray: this.state.trxArray});
-        }
 
         Reactotron.log("ADD TRX");
         Reactotron.log(JSON.stringify(this.state.trxArray));
+
         AsyncStorage.setItem('transaction', JSON.stringify(this.state.trxArray)).then(() => {
-            Actions.index();
-        });
+                Actions.index();
+            });
+        } else {
+            Alert.alert('Gagal. Nominal Transaksi tidak boleh kosong')
+        }
+
+
 
     }
 
