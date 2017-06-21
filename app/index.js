@@ -25,9 +25,9 @@ const IndexApp =() => {
     return (
         <Router>
             <Scene key="root">
-                <Scene key="index" component={Dashboard} hideNavBar={true} title="Dashboard"  />
+                <Scene key="index" component={Dashboard} hideNavBar={true} title="Dashboard" initial />
                     <Scene key="dsw" component={DashboardWalkthrough} hideNavBar={true} />
-                <Scene key="login" component={Login} title="Login Page" hideNavBar={true} initial />
+                <Scene key="login" component={Login} title="Login Page" hideNavBar={true}  />
                 <Scene key="welcome" component={WelcomeScreen} hideNavBar={true}  />
                 {/*Registration Story Board*/}
                     <Scene key="regA" component={RegA} title="A" hideNavBar={true}  />

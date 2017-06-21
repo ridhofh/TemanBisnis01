@@ -13,7 +13,7 @@ import AButton from './actionButton';
 
 import Beranda from './beranda/beranda';
 import Laporan from './laporan/laporan';
-import Piutang from './piUtang/piutang';
+import Piutang from './piUtang/utangPiutang';
 import Lainnya from './lainnya/lainnya';
 
 export default class DashboardWalkthrough extends Component {

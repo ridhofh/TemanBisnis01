@@ -2,16 +2,19 @@ import React, { Component } from 'react';
 import {
     Image,
 } from 'react-native';
-import {Header, Title, Body} from 'native-base';
+import {Header, Title, Body, Left, Right} from 'native-base';
 
 export default class BHeader extends Component {
     render() {
         return (
             <Header>
+                <Left>
+                    <Image source={require('../../../assets/src/img/header/Header_Beranda.png')} style={{width:36, height:36}} />
+                </Left>
                 <Body style={{flexDirection:'row'}}>
-                    <Image source={require('../../../assets/src/img/beranda/Ikon_Dompet.png')} style={{width:36, height:36}} />
-                    <Title>      Rp {this.props.userBalance}</Title>
+                    <Title>Rp {this.props.userBalance}</Title>
                 </Body>
+                <Right/>
             </Header>
         );
     }

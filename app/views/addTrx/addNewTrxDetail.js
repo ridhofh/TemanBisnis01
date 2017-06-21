@@ -25,6 +25,7 @@ export default class AddNewTrxDetail extends Component{
         this.icons = {
             'up'    : require('../../assets/src/img/icon_trx/arrow-up.png'),
             'down'  : require('../../assets/src/img/icon_trx/arrow-down.png')
+            //<Icon name='md-arrow-dropdown' /> && md-arrow-dropup
         }
     }
 

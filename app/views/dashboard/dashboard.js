@@ -13,7 +13,7 @@ import AButton from './actionButton';
 
 import Beranda from './beranda/beranda';
 import Laporan from './laporan/laporan';
-import Piutang from './piUtang/piutang';
+import Piutang from './piUtang/utangPiutang';
 import Lainnya from './lainnya/lainnya';
 
 export default class Dashboard extends Component{
@@ -49,6 +49,7 @@ export default class Dashboard extends Component{
                             tabBarInactiveTextColor='#6B6B6B'
                             tabBarPosition="bottom"
                             locked={true}
+                            initialPage={2}
                             renderTabBar={() => <ScrollableTabBar style={{elevation : 1}} />}>
                         <Beranda userBalance={this.state.userBalance} tabLabel='Home'>
                             <Image
