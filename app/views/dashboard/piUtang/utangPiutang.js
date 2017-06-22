@@ -14,16 +14,20 @@ export default class UPiutang extends Component {
         return (
             <Container>
                 <UPHeader/>
-                <Content>
+                {/*<Content>*/}
                     <Tabs>
                         <Tab heading="Piutang">
-                            <Piutang/>
+                            <Content>
+                                <Piutang/>
+                            </Content>
                         </Tab>
                         <Tab heading="Utang">
-                            <Utang/>
+                            <Content>
+                                <Utang/>
+                            </Content>
                         </Tab>
                     </Tabs>
-                </Content>
+                {/*</Content>*/}
             </Container>
         );
     }
